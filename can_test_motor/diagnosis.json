@@ -1,0 +1,441 @@
+{
+  "motor_id": 127,
+  "tests": [
+    {
+      "test": "identity",
+      "status": "PASS",
+      "result": {
+        "command": 0,
+        "motor_id": 127,
+        "destination": 254,
+        "can_id": "0x00007FFE",
+        "data": "b2 41 30 20 a0 13 33 0c",
+        "kind": "identity",
+        "uid": "0xB2413020A013330C"
+      }
+    },
+    {
+      "test": "version",
+      "status": "FAIL",
+      "error": "motor 127, command 0x1A: 응답 timeout"
+    },
+    {
+      "test": "run_mode",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "05 70 00 00 00 00 00 00",
+        "kind": "parameter",
+        "index": "0x7005",
+        "name": "run_mode",
+        "read_result": 0,
+        "value": 0
+      }
+    },
+    {
+      "test": "iq_ref",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "06 70 00 00 00 00 00 00",
+        "kind": "parameter",
+        "index": "0x7006",
+        "name": "iq_ref",
+        "read_result": 0,
+        "value": 0.0
+      }
+    },
+    {
+      "test": "spd_ref",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "0a 70 00 00 00 00 00 00",
+        "kind": "parameter",
+        "index": "0x700A",
+        "name": "spd_ref",
+        "read_result": 0,
+        "value": 0.0
+      }
+    },
+    {
+      "test": "limit_torque",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "0b 70 00 00 00 00 10 42",
+        "kind": "parameter",
+        "index": "0x700B",
+        "name": "limit_torque",
+        "read_result": 0,
+        "value": 36.0
+      }
+    },
+    {
+      "test": "cur_kp",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "10 70 00 00 7b 14 2e 3e",
+        "kind": "parameter",
+        "index": "0x7010",
+        "name": "cur_kp",
+        "read_result": 0,
+        "value": 0.17000000178813934
+      }
+    },
+    {
+      "test": "cur_ki",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "11 70 00 00 a6 9b 44 3c",
+        "kind": "parameter",
+        "index": "0x7011",
+        "name": "cur_ki",
+        "read_result": 0,
+        "value": 0.012000000104308128
+      }
+    },
+    {
+      "test": "cur_filt_gain",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "14 70 00 00 cd cc cc 3d",
+        "kind": "parameter",
+        "index": "0x7014",
+        "name": "cur_filt_gain",
+        "read_result": 0,
+        "value": 0.10000000149011612
+      }
+    },
+    {
+      "test": "loc_ref",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "16 70 00 00 ea 41 bb 3f",
+        "kind": "parameter",
+        "index": "0x7016",
+        "name": "loc_ref",
+        "read_result": 0,
+        "value": 1.4629490375518799
+      }
+    },
+    {
+      "test": "limit_spd",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "17 70 00 00 00 00 20 41",
+        "kind": "parameter",
+        "index": "0x7017",
+        "name": "limit_spd",
+        "read_result": 0,
+        "value": 10.0
+      }
+    },
+    {
+      "test": "limit_cur",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "18 70 00 00 00 00 64 42",
+        "kind": "parameter",
+        "index": "0x7018",
+        "name": "limit_cur",
+        "read_result": 0,
+        "value": 57.0
+      }
+    },
+    {
+      "test": "mechPos",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "19 70 00 00 84 40 bb 3f",
+        "kind": "parameter",
+        "index": "0x7019",
+        "name": "mechPos",
+        "read_result": 0,
+        "value": 1.4629063606262207
+      }
+    },
+    {
+      "test": "iqf",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "1a 70 00 00 00 00 00 00",
+        "kind": "parameter",
+        "index": "0x701A",
+        "name": "iqf",
+        "read_result": 0,
+        "value": 0.0
+      }
+    },
+    {
+      "test": "mechVel",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "1b 70 00 00 00 00 00 00",
+        "kind": "parameter",
+        "index": "0x701B",
+        "name": "mechVel",
+        "read_result": 0,
+        "value": 0.0
+      }
+    },
+    {
+      "test": "VBUS",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "1c 70 00 00 71 3d f0 41",
+        "kind": "parameter",
+        "index": "0x701C",
+        "name": "VBUS",
+        "read_result": 0,
+        "value": 30.030000686645508
+      }
+    },
+    {
+      "test": "loc_kp",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "1e 70 00 00 00 00 70 42",
+        "kind": "parameter",
+        "index": "0x701E",
+        "name": "loc_kp",
+        "read_result": 0,
+        "value": 60.0
+      }
+    },
+    {
+      "test": "spd_kp",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "1f 70 00 00 00 00 c0 40",
+        "kind": "parameter",
+        "index": "0x701F",
+        "name": "spd_kp",
+        "read_result": 0,
+        "value": 6.0
+      }
+    },
+    {
+      "test": "spd_ki",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "20 70 00 00 0a d7 a3 3c",
+        "kind": "parameter",
+        "index": "0x7020",
+        "name": "spd_ki",
+        "read_result": 0,
+        "value": 0.019999999552965164
+      }
+    },
+    {
+      "test": "spd_filt_gain",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "21 70 00 00 cd cc cc 3d",
+        "kind": "parameter",
+        "index": "0x7021",
+        "name": "spd_filt_gain",
+        "read_result": 0,
+        "value": 0.10000000149011612
+      }
+    },
+    {
+      "test": "acc_rad",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "22 70 00 00 00 00 a0 41",
+        "kind": "parameter",
+        "index": "0x7022",
+        "name": "acc_rad",
+        "read_result": 0,
+        "value": 20.0
+      }
+    },
+    {
+      "test": "vel_max",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "24 70 00 00 00 00 20 41",
+        "kind": "parameter",
+        "index": "0x7024",
+        "name": "vel_max",
+        "read_result": 0,
+        "value": 10.0
+      }
+    },
+    {
+      "test": "acc_set",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "25 70 00 00 00 00 20 41",
+        "kind": "parameter",
+        "index": "0x7025",
+        "name": "acc_set",
+        "read_result": 0,
+        "value": 10.0
+      }
+    },
+    {
+      "test": "EPScan_time",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "26 70 00 00 00 00 00 00",
+        "kind": "parameter",
+        "index": "0x7026",
+        "name": "EPScan_time",
+        "read_result": 0,
+        "value": 0
+      }
+    },
+    {
+      "test": "canTimeout",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "28 70 00 00 00 00 00 00",
+        "kind": "parameter",
+        "index": "0x7028",
+        "name": "canTimeout",
+        "read_result": 0,
+        "value": 0
+      }
+    },
+    {
+      "test": "zero_sta",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "29 70 00 00 00 00 00 00",
+        "kind": "parameter",
+        "index": "0x7029",
+        "name": "zero_sta",
+        "read_result": 0,
+        "value": 0
+      }
+    },
+    {
+      "test": "damper",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "2a 70 00 00 00 00 00 00",
+        "kind": "parameter",
+        "index": "0x702A",
+        "name": "damper",
+        "read_result": 0,
+        "value": 0
+      }
+    },
+    {
+      "test": "add_offset",
+      "status": "PASS",
+      "result": {
+        "command": 17,
+        "motor_id": 127,
+        "destination": 253,
+        "can_id": "0x11007FFD",
+        "data": "2b 70 00 00 00 00 00 00",
+        "kind": "parameter",
+        "index": "0x702B",
+        "name": "add_offset",
+        "read_result": 0,
+        "value": 0.0
+      }
+    }
+  ],
+  "scope": "read-only; no enable/stop/write",
+  "passed": false
+}
