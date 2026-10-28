@@ -12,6 +12,7 @@ The default serial port is /dev/ttyTHS1 and the default flash address is
 from __future__ import annotations
 
 import argparse
+import os
 from pathlib import Path
 import struct
 import sys
@@ -23,7 +24,8 @@ try:
 except ImportError:
     print(
         "Error: install the GPIO binding with: "
-        "sudo apt install python3-libgpiod",
+        "sudo apt update"
+        "sudo apt install python3-libgpiod python3-serial",
         file=sys.stderr,
     )
     raise SystemExit(2)
@@ -32,7 +34,9 @@ try:
     import serial
 except ImportError:
     print(
-        "Error: install pyserial with: sudo apt install python3-serial",
+        "Error: install pyserial with: sudo apt install python3-serial"
+        "sudo apt update"
+        "sudo apt install python3-libgpiod python3-serial",
         file=sys.stderr,
     )
     raise SystemExit(2)
@@ -417,6 +421,12 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     try:
+        if sys.platform.startswith("linux") and os.geteuid() != 0:
+            os.execvp(
+                "sudo",
+                ["sudo", "-E", sys.executable, str(Path(__file__).resolve()), *sys.argv[1:]],
+            )
+
         firmware = args.firmware.read_bytes()
         if not firmware:
             raise FlashError("firmware file is empty")
