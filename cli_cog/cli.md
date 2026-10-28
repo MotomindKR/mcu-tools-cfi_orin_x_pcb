@@ -2,6 +2,7 @@
 
 | Setting | Value |
 |---|---|
+| Port | `/dev/ttyTHS1` |
 | Baud rate | `921600` |
 | Data bits | `8` |
 | Parity | `None` |

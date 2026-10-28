@@ -7,7 +7,7 @@ This document covers what a receiver needs to decode it.
 
 | Item          | Value                                   |
 |---------------|-----------------------------------------|
-| UART          | 921600 baud, 8N1, no flow control       |
+| UART          | `/dev/ttyTHS1`, 921600 baud, 8N1, no flow control |
 | Framing       | COBS-encoded, terminated by `0x00`      |
 | Byte order    | little-endian for all multi-byte fields |
 | Float format  | IEEE 754 float32                        |

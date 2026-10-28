@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 from decimal import Decimal
 import math
+import os
 from pathlib import Path
 import queue
 import re
@@ -29,12 +30,15 @@ except ImportError:  # Keep the decoder importable/testable without pyserial.
 
 
 # Examples (run from the project root):
-# python _doc/cli_cog.py --list-ports
-# python _doc/cli_cog.py --port COM3
-# python _doc/cli_cog.py --cli --port COM3 --baud 921600
+# python cli_cog/cli_cog.py  # Linux: relaunch with sudo and connect to /dev/ttyTHS1.
+# python cli_cog/cli_cog.py --list-ports
+# python cli_cog/cli_cog.py --port COM3
+# python cli_cog/cli_cog.py --cli --port COM3 --baud 921600
 # Binary capture on stdin (cmd.exe):
-# python _doc/cli_cog.py --cli --stdin < log.bin
+# python cli_cog/cli_cog.py --cli --stdin < log.bin
 
+
+DEFAULT_PORT = "/dev/ttyTHS1"
 
 TYPE_NAMES = {
     0x01: "Battery V/I",
@@ -337,7 +341,7 @@ class GpioLevel(ttk.Label if ttk is not None else object):
 
 
 class CogMonitor(tk.Tk if tk is not None else object):
-    def __init__(self, port: str | None = None, baudrate: int = 921600) -> None:
+    def __init__(self, port: str | None = DEFAULT_PORT, baudrate: int = 921600) -> None:
         super().__init__()
         self.title("COG Log Monitor")
         self.geometry("1180x780")
@@ -367,6 +371,8 @@ class CogMonitor(tk.Tk if tk is not None else object):
         self.refresh_ports()
         self.protocol("WM_DELETE_WINDOW", self.close)
         self._poll_id = self.after(50, self._drain_events)
+        if port:
+            self.after_idle(self.toggle_connection)
 
     def _build_ui(self) -> None:
         controls = ttk.Frame(self, padding=(10, 10, 10, 4))
@@ -830,7 +836,7 @@ class CogMonitor(tk.Tk if tk is not None else object):
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="COBS/CRC COG log monitor")
     parser.add_argument("--cli", action="store_true", help="run the monitor in a terminal instead of the GUI")
-    parser.add_argument("--port", help="serial port (GUI default or --cli input, for example COM3)")
+    parser.add_argument("--port", help=f"serial port to connect on startup (default: {DEFAULT_PORT})")
     parser.add_argument("--baud", type=int, default=921600, help="serial baud rate (default: 921600)")
     parser.add_argument("--stdin", action="store_true", help="with --cli, read binary COG data from standard input")
     parser.add_argument("--list-ports", action="store_true", help="list available serial ports and exit")
@@ -842,14 +848,24 @@ def main(argv: list[str] | None = None) -> int:
     if arguments.stdin and arguments.port:
         parser.error("choose either --stdin or --port")
 
+    if sys.platform.startswith("linux") and os.geteuid() != 0:
+        try:
+            # Keep the interpreter, arguments, and display environment for Tk.
+            os.execvp("sudo", ["sudo", "-E", sys.executable, str(Path(__file__).resolve()),
+                               *(sys.argv[1:] if argv is None else argv)])
+        except OSError as error:
+            print(f"Unable to restart with sudo: {error}", file=sys.stderr)
+            return 2
+
+    if not arguments.stdin and arguments.port is None:
+        arguments.port = DEFAULT_PORT
+
     if arguments.list_ports:
         if list_ports is None:
             parser.error("pyserial is required: python -m pip install pyserial")
         for available_port in list_ports.comports():
             print(f"{available_port.device}\t{available_port.description}")
     elif arguments.cli:
-        if not arguments.stdin and not arguments.port:
-            parser.error("--cli requires --port COMx or --stdin")
         return run_cli(arguments.port, arguments.baud, arguments.stdin)
     else:
         if tk is None:
